@@ -3,6 +3,7 @@
 ## AI Document Knowledge System
 
 ragstack-engine is a full-stack Retrieval-Augmented Generation platform designed to enable intelligent interaction with uploaded documents through natural language conversations.
+![System Architecture](/img.png)
 
 Users can securely register and log in using JWT-based authentication, upload PDF documents, and ask contextual questions about their uploaded files. The system processes documents asynchronously using Apache Kafka, generates semantic embeddings through Ollama-hosted embedding models, and stores vector representations in PostgreSQL with pgvector for efficient similarity search and retrieval.
 
