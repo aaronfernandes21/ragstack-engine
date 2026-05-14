@@ -80,16 +80,16 @@ services:
 
     environment:
 
-      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/app_db
+      SPRING_DATASOURCE_URL: URL
       SPRING_DATASOURCE_USERNAME: postgres
       SPRING_DATASOURCE_PASSWORD: password
 
       SPRING_KAFKA_BOOTSTRAP_SERVERS: kafka:29092
 
-      SPRING_AI_OLLAMA_BASE_URL: http://ollama:11434
-      EMBEDDING_API_URL: http://ollama:11434/api/embeddings
+      SPRING_AI_OLLAMA_BASE_URL: URL
+      EMBEDDING_API_URL: URL
 
-      JWT_SECRET: NAkii7N01SwtSyUtqZLsHLyXeJipjhJsd0rkO9uOuB8
+      JWT_SECRET: {ADD JWT SECRET}
 
 volumes:
   pgdata:
