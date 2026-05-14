@@ -1,0 +1,170 @@
+:root {
+  --bg: #f5f9ff;
+  --surface: #ffffff;
+  --surface-2: #eef4ff;
+  --text: #0b1e3f;
+  --text-muted: #5b6b85;
+  --primary: #3b82f6;
+  --primary-hover: #2563eb;
+  --primary-soft: #dbeafe;
+  --border: #e2eaf5;
+  --danger: #ef4444;
+  --success: #10b981;
+  --shadow-sm: 0 1px 2px rgba(15, 39, 86, 0.06);
+  --shadow-md: 0 8px 24px rgba(15, 39, 86, 0.08);
+  --shadow-lg: 0 20px 48px rgba(15, 39, 86, 0.12);
+  --radius-sm: 8px;
+  --radius: 14px;
+  --radius-lg: 22px;
+  --font-sans: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+}
+
+[data-theme='dark'] {
+  --bg: #0b1220;
+  --surface: #131c2e;
+  --surface-2: #1a2540;
+  --text: #e8efff;
+  --text-muted: #95a4c2;
+  --primary: #60a5fa;
+  --primary-hover: #93c5fd;
+  --primary-soft: rgba(96, 165, 250, 0.15);
+  --border: #243352;
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.45);
+  --shadow-lg: 0 20px 48px rgba(0, 0, 0, 0.55);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
+
+a {
+  color: var(--primary);
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+input,
+textarea {
+  font-family: inherit;
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 18px;
+  border-radius: var(--radius-sm);
+  border: 1px solid transparent;
+  font-weight: 600;
+  font-size: 14px;
+  transition: transform 0.15s ease, background 0.15s ease, box-shadow 0.2s ease;
+}
+.btn:active { transform: translateY(1px); }
+.btn-primary {
+  background: var(--primary);
+  color: #fff;
+  box-shadow: var(--shadow-sm);
+}
+.btn-primary:hover { background: var(--primary-hover); box-shadow: var(--shadow-md); }
+.btn-ghost {
+  background: transparent;
+  color: var(--text);
+  border-color: var(--border);
+}
+.btn-ghost:hover { background: var(--surface-2); }
+.btn-block { width: 100%; }
+.btn-danger { background: transparent; color: var(--danger); border-color: var(--border); }
+.btn-danger:hover { background: rgba(239,68,68,0.1); }
+
+/* Form */
+.form-group { display: flex; flex-direction: column; gap: 6px; margin-bottom: 16px; }
+.form-label { font-size: 13px; color: var(--text-muted); font-weight: 500; }
+.form-input {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 12px 14px;
+  color: var(--text);
+  font-size: 14px;
+  outline: none;
+  transition: border 0.15s ease, box-shadow 0.15s ease;
+}
+.form-input:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px var(--primary-soft);
+}
+.form-error { color: var(--danger); font-size: 13px; margin-top: -8px; margin-bottom: 12px; }
+
+/* Card */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  padding: 32px;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.fade-in { animation: fadeInUp 0.4s ease both; }
+
+@keyframes spin { to { transform: rotate(360deg); } }
+.spinner {
+  width: 18px; height: 18px;
+  border: 2px solid var(--primary-soft);
+  border-top-color: var(--primary);
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+  display: inline-block;
+}
+
+@keyframes typing {
+  0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
+  30% { transform: translateY(-4px); opacity: 1; }
+}
+
+/* Toast */
+.toast-container {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 1000;
+}
+.toast {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--primary);
+  padding: 12px 18px;
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-lg);
+  color: var(--text);
+  font-size: 14px;
+  min-width: 240px;
+  animation: fadeInUp 0.25s ease both;
+}
+.toast.success { border-left-color: var(--success); }
+.toast.error { border-left-color: var(--danger); }
