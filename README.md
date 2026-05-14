@@ -63,3 +63,5 @@ Retrieved document chunks, along with recent chat memory, are used to generate a
 ## Purpose
 
 This project was developed as an exploration into AI-integrated backend systems and modern RAG-based architectures, combining practical implementations of semantic search, document intelligence, and conversational AI into a cohesive platform.
+
+Some parts of the frontend were built with AI assistance during development to speed up UI setup and prototyping.
