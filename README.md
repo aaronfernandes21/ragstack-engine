@@ -59,6 +59,161 @@ Retrieved document chunks, along with recent chat memory, are used to generate a
 
 ---
 
+# Prerequisites
+
+Before running the project, ensure the following are installed:
+
+- Java 21 JDK
+- Docker Desktop
+- Git
+- Node.js (LTS)
+- Maven
+
+---
+
+# Backend Setup
+
+## 1. Clone Repository
+
+```bash
+git clone https://github.com/aaronfernandes21/ragstack-engine
+cd aiDoc
+```
+
+---
+
+## 2. Configure Environment Variables
+
+Update the following variables inside `docker-compose.yml`:
+
+```env
+SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/app_db
+SPRING_DATASOURCE_USERNAME=postgres
+SPRING_DATASOURCE_PASSWORD=password
+
+SPRING_KAFKA_BOOTSTRAP_SERVERS=kafka:29092
+
+SPRING_AI_OLLAMA_BASE_URL=http://ollama:11434
+EMBEDDING_API_URL=http://ollama:11434/api/embeddings
+
+JWT_SECRET=your-secret-key
+```
+
+---
+
+## 3. Build Spring Boot Application
+
+### Windows
+
+```bash
+mvnw.cmd clean package -DskipTests
+```
+
+### Linux / macOS
+
+```bash
+./mvnw clean package -DskipTests
+```
+
+---
+
+## 4. Start Complete Infrastructure
+
+```bash
+docker compose up --build
+```
+
+This starts:
+
+- Spring Boot Backend
+- PostgreSQL + pgvector
+- Apache Kafka
+- Zookeeper
+- Ollama
+
+---
+
+## 5. Pull Ollama Models
+
+Open another terminal and run:
+
+```bash
+docker exec -it ollama ollama pull phi3:mini
+```
+
+```bash
+docker exec -it ollama ollama pull nomic-embed-text
+```
+
+---
+
+## 6. Enable pgvector Extension
+
+Connect to PostgreSQL container:
+
+```bash
+docker exec -it pgvector-db psql -U postgres -d app_db
+```
+
+Run:
+
+```sql
+CREATE EXTENSION IF NOT EXISTS vector;
+
+CREATE SCHEMA IF NOT EXISTS auth;
+CREATE SCHEMA IF NOT EXISTS jobs;
+CREATE SCHEMA IF NOT EXISTS ai;
+```
+
+Exit:
+
+```sql
+\q
+```
+
+---
+
+## 7. Backend Runs At
+
+```text
+http://localhost:8080
+```
+
+---
+
+# Frontend Setup
+
+## 1. Move to Frontend folder
+
+```bash
+cd ..
+cd frontend
+```
+
+---
+
+## 2. Install Dependencies
+
+```bash
+npm install
+```
+
+---
+
+## 3. Start Frontend
+
+```bash
+npm run dev
+```
+
+Frontend runs at:
+
+```text
+http://localhost:3000
+```
+
+---
+
 
 
 ## Purpose
